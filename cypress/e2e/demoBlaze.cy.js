@@ -5,7 +5,7 @@ describe('Demoblaze', () => {
     cy.visit('');
   });
 
-  it('should provide an ability to login', () => {
+  it('should provide an ability to sign up', () => {
     const user = generateUser();
     cy.visit('');
     cy.get('#signin2').click();
@@ -25,12 +25,20 @@ describe('Demoblaze', () => {
     cy.visit('');
     cy.get('#login2').click();
 
-    cy.get('#loginusername').type(username); 
+    cy.wait(1000);
+    cy.get('#loginusername').type(username);
     cy.get('#loginpassword').type(password);
 
-    cy.get('.btn').contains('Log in').click();
-   });
+    cy.get('[onclick="logIn()"]').click();
+  });
 
-   it('should ')
-   
-});
+  it.only('should provide an ability to add product Samsung Galaxy s6  to the cart', () => {
+    cy.login();
+    cy.contains('.list-group-item', 'Phones').click();
+    cy.contains('.hrefch', 'Samsung galaxy s6').click();
+    cy.contains('.btn-success', 'Add to cart').click();
+    cy.on('window:aler', (str) => {
+      expect(str).to.equal('Product added');
+    });
+  });
+})
