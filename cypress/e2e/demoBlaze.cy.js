@@ -32,7 +32,7 @@ describe('Demoblaze', () => {
     cy.get('[onclick="logIn()"]').click();
   });
 
-  it.only('should provide an ability to add product Samsung Galaxy s6  to the cart', () => {
+  it('should provide an ability to add product Samsung Galaxy s6  to the cart', () => {
     cy.login();
     cy.contains('.list-group-item', 'Phones').click();
     cy.contains('.hrefch', 'Samsung galaxy s6').click();
